@@ -1,0 +1,13 @@
+#fileInput {
+  width: 200px; /* 设置输入框宽度 */
+  padding: 10px; /* 设置内边距 */
+  border: 1px solid #007BFF; /* 设置边框样式 */
+  border-radius: 5px; /* 设置边框圆角 */
+  font-size: 16px; /* 设置字体大小 */
+  color: #333; /* 设置字体颜色 */
+  background-color: #007BFF; /* 设置背景色 */
+}
+
+#fileInput::placeholder {
+  color: #aaa; /* 设置占位符文本颜色 */
+}

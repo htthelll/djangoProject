@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>大麻雄蕊识别系统</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="{% static 'assets/css/baguetteBox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vanilla-zoom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/input.css' %}">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="">大麻雄蕊识别系统</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="zhanshi/">上传记录</a><a class="nav-link active" href="/users/logout">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page landing-page">
+        <section class="clean-block clean-hero" style="background-image:url({% static 'assets/img/tech/image4.jpg'%});color:rgba(9, 162, 255, 0.85); height: 730px" >
+            <div class="text">
+                <p>一次性上传所有无人机拍摄图片</p>
+                <form method="post" enctype="multipart/form-data" id="upload-form">
+                    {% csrf_token %}
+                    <input type="file" name="image" id="image-input" multiple>
+                    <label for="text-input"></label><input type="text" name="text" id="text-input" placeholder="请输入图片批次名称（不可重复）" style="width: 250px">
+
+                </form>
+                <button class="btn btn-outline-light" name="uploadButton" id="uploadButton" style="display: none;">上传图片</button>
+            </div>
+        </section>
+        <div id="bar" style="display: none">
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer dark">
+        <div class="footer-copyright">
+            <p>© 2023 Copyright 东北农业大学</p>
+        </div>
+    </footer>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{% static 'assets/js/vanilla-zoom.js' %}"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/uploadButton.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'assets/js/progressBar.js' %}"></script>
+</body>
+
+</html>

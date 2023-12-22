@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>已上传数据集</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="{% static 'assets/css/baguetteBox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/vanilla-zoom.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="">大麻雄蕊识别系统</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href='{% url 'index' %}'>主页</a><a class="nav-link active" href="{% url 'logout' %}">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block"></section>
+    <section class="clean-block clean-form">
+        <h2 class="text-info" style="text-align: center; margin-top: 50px">已上传数据</h2>
+        <div class="container" style="position: relative; top: 40px">
+            {% for marker, images in images_by_marker.items %}
+                <div class="image-container" style="display: flex; align-items: center; justify-content: center; gap:50px; background-color: rgba(20,20,20,0.11); border-radius: 15px; height: 60px">
+                <h class="text-info">数据集名称：{{ marker }}</h>
+{#              <img src="{{ images.image.image_path.url }}" alt="Image" style="width: 400px; height: auto; ">#}
+                <h class="text-info">图片数量：{{ images.count }}</h>
+                {% if not images.processing %}
+                    <button class="btn btn-primary delete-button" data-marker-id="{{ images.data_name }}">删除图片集</button>
+                {% endif %}
+                {% if images.is_processed %}
+                    <button class="btn btn-primary download-button" name="download" id="download" data-marker-id="{{ images.data_name }}">下载识别结果</button>
+                {% elif images.processing %}
+                    <button class="btn btn-success" name="tag" id="tag">图片正在识别中</button>
+                {% else %}
+                    <button class="btn btn-primary detect-button" name="detect" id="detect" data-marker-id="{{ images.data_name }}">识别</button>
+                {% endif %}
+                </div>
+                <div class="block" style="height: 30px"></div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="clean-block">
+
+    </section>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="{% static 'assets/js/vanilla-zoom.js' %}"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'assets/js/functionButton.js' %}"></script>
+</body>
+</html>
