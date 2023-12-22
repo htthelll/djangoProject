@@ -1,7 +1,7 @@
 const bar = document.getElementById('bar');
 $(document).ready(function() {
     $('#uploadButton').on('click', function() {
-        alert("请留在当前页面等待上传成功")
+        alert("请不要关闭当前页面")
         const formData = new FormData();
         const imageInputs = $('#image-input')[0].files;
         for (let i = 0; i < imageInputs.length; i++) {
